@@ -7,3 +7,8 @@ const Instruction* SUB = new Instruction("SUB", "00000010");
 const Instruction* MOV = new Instruction("MOV", "00000011");
 const Instruction* INC = new Instruction("INC", "00000100");
 const Instruction* JMP = new Instruction("JMP", "00000101");
+
+void addInst(std::string operand1, std::string operand2) {
+    Register* opr1 = identifyReg(operand1);
+    Register* opr2 = identifyReg(operand2);
+}
