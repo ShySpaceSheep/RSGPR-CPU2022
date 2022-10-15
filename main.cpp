@@ -1,7 +1,7 @@
 #include <iostream>
 #include <windows.h>
 #include <shellapi.h>
-#include "registers.h"
+#include "dependencies/registers.h"
 using std::cout;
 using std::cin;
 using std::endl;
@@ -41,8 +41,12 @@ void actionSelector() {
 
     switch(actionSelected) {
         case 1:
+            cout << "Not yet implemented" << endl;
+            system("pause");
             break;
         case 2:
+            cout << "Not yet implemented" << endl;
+            system("pause");
             break;
         case 3:
             viewRegState();
