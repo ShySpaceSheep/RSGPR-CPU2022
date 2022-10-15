@@ -3,18 +3,7 @@
 int* returnHexRemainders(int);
 std::string convertToHex(int*);
 
-int main(void) {
-    int decNum, size;
-    int* size_ptr = &size;
-    std::cout << "Enter a decimal number: ";
-    std::cin >> decNum;
-
-    int *remainderArr = returnHexRemainders(decNum);
-    //std::cout << sizeof(remainderArr) / sizeof(int);
-    //std::cout << "The hex of " << decNum << " is " << convertToHex();
-    return 0;
-}
-
+// TODO: Complete 
 int* returnHexRemainders(int decimal) {
     int *remainders;
     int i = 0;
