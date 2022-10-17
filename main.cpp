@@ -2,6 +2,7 @@
 #include <windows.h>
 #include <shellapi.h>
 #include "dependencies/registers.h"
+#include "dependencies/memory.h"
 using std::cout;
 using std::cin;
 using std::endl;
@@ -17,7 +18,6 @@ int main(void) {
         mainMenu();
         actionSelector();
     }
-
     return 0;
 }
 
@@ -39,29 +39,37 @@ void actionSelector() {
         }
     }
 
+    char writeProgImport, writeProgMode;
     switch(actionSelected) {
         case 1:
-            cout << "Not yet implemented" << endl;
+            cout << "Would you like to import an external text file for scanning? (Y/N): ";
+            cin >> writeProgImport;
+            cout << "Display inline register status every line? (Y/N): ";
+            cin >> writeProgMode;
+            cout << "Feature not yet implemented or supported" << endl;
             system("pause");
             break;
         case 2:
-            cout << "Not yet implemented" << endl;
-            system("pause");
+            viewDefaultMemory();
             break;
         case 3:
             viewRegState();
             break;
         case 4:
+            cout << "Feature not yet implemented or supported" << endl;
+            system("pause");
+            break;
+        case 5:
             cout << "Documentation opened in external window!" << endl;
             cout << "If it didn't, copy and paste the GitHub link to your browser:" << endl;
             cout << "https://github.com/ShySpaceSheep/RSGPR-CPU2022" << endl;
             ShellExecuteW(0, 0, L"https://github.com/ShySpaceSheep/RSGPR-CPU2022", 0, 0, SW_SHOW);
             system("pause");
             break;
-        case 5:
+        case 6:
             aboutText();
             break;
-        case 6:
+        case 7:
             RUNNING = false;
             break;
         default:
@@ -79,9 +87,10 @@ void mainMenu() {
     cout << "| 1. WRITE PROGRAM    | Write a simple program for the RSGPR.     |" << endl;
     cout << "| 2. VIEW MEMORY      | View the 1024kb total memory in pages.    |" << endl;
     cout << "| 3. VIEW REGISTERS   | View register status                      |" << endl;
-    cout << "| 4. HELP             | Provides a brief documentation via GitHub |" << endl;
-    cout << "| 5. ABOUT            | Project details and version               |" << endl;
-    cout << "| 6. EXIT             | Exit the program.                         |" << endl;
+    cout << "| 4. SIMULATE ATM     | Start a simulation inside a simulation    |" << endl;
+    cout << "| 5. HELP             | Provides a brief documentation via GitHub |" << endl;
+    cout << "| 6. ABOUT            | Project details and version               |" << endl;
+    cout << "| 7. EXIT             | Exit the program.                         |" << endl;
     cout << "+-----------------------------------------------------------------+" << endl;
 }
 
@@ -99,7 +108,7 @@ void viewRegState() {
     cout << "+------------+-------+-------+     +------------+---------+     +------------+---------+" << endl;
     cout << "|     D      |  " << gpReg[3]->getHighReg() << "   |   " << gpReg[3]->getLowReg() << "  |                                  |     DI     |   " << specPurpReg[3]->getRegisterVal() << "  |" << endl;
     cout << "+------------+-------+-------+                                  +------------+---------+" << endl;
-    cout << "You will now be returned to the main menu..." << endl;
+    //cout << "You will now be returned to the main menu..." << endl;
     system("pause");
 }
 

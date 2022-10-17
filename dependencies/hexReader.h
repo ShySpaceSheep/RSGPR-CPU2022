@@ -1,30 +1,24 @@
 #include <iostream>
 #include <string>
-int* returnHexRemainders(int);
-std::string convertToHex(int*);
 
-// TODO: Complete 
-int* returnHexRemainders(int decimal) {
-    int *remainders;
+std::string decimalToHex(int decimal) {
+    /*std::string retStr;
+    int* remainders;
     int i = 0;
     while (decimal != 0) {
         remainders[i] = decimal % 16;
         decimal /= 16;
         i++;
     }
-    return remainders;
-}
 
-std::string convertToHex(int* numArr) {
-    int size = 0;
-    std::string retStr;
-    for (int i = size - 1, j = 0; i >= 0; i--, j++) {
-        if (numArr[i] < 10) {
-            retStr += (char) '0' + numArr[i];
+    for (int size = i; i >= 0; i--) {
+        if (remainders[size] < 10) {
+            retStr += (char) '0' + remainders[size];
         } else {
-            int difference = numArr[i] - 10;
+            int difference = remainders[size] - 10;
             retStr += (char) 65 + difference;
         }
     }
-    return retStr;
+    std::cout << retStr << std::endl;
+    return retStr;*/
 }

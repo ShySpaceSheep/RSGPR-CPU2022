@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstring>
 #include <string>
+#include "hexReader.h"
 
 class Register {
     std::string name;
@@ -20,8 +21,9 @@ class Register {
     }
 
     // Placeholder for now.
-    bool setRegValue(std::string value) {
-        this->displayHexVal = value;
+    bool setRegValue(int decimal) {
+        std::string newValue = decimalToHex(decimal);
+        this->displayHexVal = newValue;
         return true;
     }
 
