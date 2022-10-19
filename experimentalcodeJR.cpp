@@ -1,191 +1,407 @@
-#include <iostream> 
+#include <iostream>
 
-using namespace std; 
+using namespace std;
 
- 
+//REGISTERS:
 
-//REGISTERS: 
+int nAX, nBX, nCX;
 
- 
+int* AX = &nAX;
 
-int nAX; 
+int* BX = &nBX;
 
-int nBX; 
+int* CX = &nCX;
 
- 
+//ZERO FLAG:
 
-int* AX = &nAX; 
+bool ZF = 0;
 
-int* BX = &nBX; 
+//MEMORY:
 
- 
+int nM;
 
-//ZERO FLAG: 
+int* M = &nM;
 
- 
+//INSTRUCTION INDEX:
 
-bool ZF = 0; 
+int instruction = 0;
 
- 
+bool running = true;
 
-//MEMORY: 
+//OPERATIONS:
 
- 
+void SUB(int* A, int B) {
 
-int nM1; 
+*A = *A - B;
 
-int nM2; 
+}
 
-int nM3; 
+void MOV(int* A, int B) {
 
- 
+*A = B;
 
-int* M1 = &nM1; 
+}
 
-int* M2 = &nM2; 
+void INC(int* A) {
 
-int* M3 = &nM3; 
+*A = *A + 1;
 
- 
+}
 
-//INSTRUCTION INDEX: 
+void JMP(int A) {
 
- 
+//ALWAYS JUMP
 
-int instruction; 
+instruction = A - 1;
 
- 
+}
 
-//OPERATIONS: 
+void JE(int A) {
 
- 
+if (ZF == 1) {
 
-void ADD(int* A, int* B) { 
+instruction = A - 1;
 
-    *A += *B; 
+}
 
-} 
+}
 
- 
+void JNE(int A) {
 
-void SUB(int* A, int* B) { 
+if (ZF == 0) {
 
-    *A -= *B; 
+instruction = A - 1;
 
-} 
+}
 
- 
+}
 
-void MOV(int* A, int* B) { 
+void CMP(int* A, int B) {
 
-    *A = *B; 
+if (*A == B) {
 
-} 
+ZF = 1;
 
- 
+} else {
 
-void INC(int* A) { 
+ZF = 0;
 
-    *A++; 
+}
 
-} 
+}
 
- 
+void IFNEG(int* A) {
 
-void JMP(int A) { 
+//CHECK IF NEGATIVE NUMBER
 
-    if (ZF) { 
+if (*A < 0) {
 
-        instruction = A - 1; 
+ZF = 1;
 
-    } 
+} else {
 
-} 
+ZF = 0;
 
- 
+}
 
-void CMP(int* A, int* B) { 
+}
 
-    if (*A == *B) { 
+void END() {
 
-        ZF = 1; 
+running = false;
 
-    } 
+}
 
-} 
+void DISPLAY() {
 
- 
+cout << "AX = " << *AX << endl;
 
-int main() { 
+cout << "BX = " << *BX << endl;
 
-    //DEFINE BYTES 
+cout << "CX = " << *CX << endl;
 
-    *M1 = 0; 
+cout << "ZF = " << ZF << endl;
 
-    *M2 = 1; 
+cout << "M = " << *M << endl;
 
-     
+}
 
-    //PROGRAM 
+int main() {
 
-    for (instruction = 1; instruction <= 7; instruction++) { 
+//DEFINE BYTES
 
-        cout << instruction << endl; 
+*M = 1000;
 
-        switch (instruction) { 
+// (BALANCE)
 
-            case 1: 
+//PROGRAM
 
-                MOV(AX, M1); 
+DISPLAY();
 
-                break; 
+while (running) {
 
-            case 2: 
+instruction++;
 
-                MOV(BX, M2); 
+switch (instruction) {
 
-                break; 
+case 1:
 
-            case 3: 
+//ATTEMPT COUNTER
 
-                ADD(AX, BX); 
+MOV(CX, 0);
 
-                break; 
+break;
 
-            case 4: 
+case 2:
 
-                CMP(AX, BX); 
+//LOAD CORRECT PIN
 
-                break; 
+MOV(BX, 1234);
 
-            case 5: 
+break;
 
-                JMP(7); 
+case 3:
 
-                break; 
+//ENTER PIN
 
-            case 6: 
+cout << "ENTER PIN: ";
 
-                INC(AX); 
+cin >> nAX;
 
-                break; 
+break;
 
-            case 7: 
+case 4:
 
-                MOV(M3, AX); 
+//VERIFY PIN
 
-                break; 
+CMP(AX, *BX);
 
-        } 
+break;
 
-         
+case 5:
 
-    } 
+//JUMP TO WITHDRAW?
 
-    cout << "M3 = " << *M3 << endl; 
+JE(10);
 
-    cout << "Exiting..."; 
+break;
 
-     
+case 6:
 
-} 
+//COUNT ATTEMPTS
+
+INC(CX);
+
+break;
+
+case 7:
+
+//CHECK ATTEMPTS
+
+CMP(CX, 3);
+
+break;
+
+case 8:
+
+//JUMP TO EXIT
+
+JE(30);
+
+break;
+
+case 9:
+
+//JUMP TO ENTER PIN
+
+JNE(3);
+
+break;
+
+case 10:
+
+//WITHDRAW?
+
+cout << "WITHDRAW? (1-YES, 0-NO): ";
+
+cin >> nAX;
+
+break;
+
+case 11:
+
+//CHECK WITHDRAW OPTION
+
+CMP(AX, 1);
+
+break;
+
+case 12:
+
+//JUMP TO WITHDRAW
+
+JE(23);
+
+break;
+
+case 13:
+
+//SELECT OPTION
+
+cout << "SELECT OPTION (1-BALANCE INQUIRY, 2-WITHDRAW, 3-EXIT): ";
+
+cin >> nAX;
+
+break;
+
+case 14:
+
+//CHECK FOR OPTION 1
+
+CMP(AX, 1);
+
+break;
+
+case 15:
+
+//JUMP TO BALANCE INQUIRY
+
+JE(20);
+
+break;
+
+case 16:
+
+//CHECK FOR OPTION 2
+
+CMP(AX, 2);
+
+break;
+
+case 17:
+
+//JUMP TO WITHDRAW
+
+JE(23);
+
+break;
+
+case 18:
+
+//CHECK FOR OPTION 3
+
+CMP(AX, 3);
+
+break;
+
+case 19:
+
+//JUMP TO EXIT
+
+JE(30);
+
+break;
+
+case 20:
+
+//BALANCE INQUIRY
+
+MOV(AX, *M);
+
+break;
+
+case 21:
+
+//DISPLAY BALANCE
+
+cout << "BALANCE: P" << *M << endl;
+
+break;
+
+case 22:
+
+//JUMP TO SELECT OPTION
+
+JMP(13);
+
+break;
+
+case 23:
+
+//WITHDRAW
+
+cout << "ENTER AMOUNT: ";
+
+cin >> nAX;
+
+break;
+
+case 24:
+
+//LOAD BALANCE
+
+MOV(BX, *M);
+
+break;
+
+case 25:
+
+//SUBTRACT AMOUNT
+
+SUB(BX, *AX);
+
+break;
+
+case 26:
+
+//CHECK IF NEGATIVE
+
+IFNEG(BX);
+
+break;
+
+case 27:
+
+//JUMP TO WITHDRAW
+
+JE(23);
+
+break;
+
+case 28:
+
+//UPDATE BALANCE
+
+MOV(M, *BX);
+
+break;
+
+case 29:
+
+//RECEIPT
+
+cout << "RECEIPT" << endl;
+
+cout << "ACCOUNT BALANCE: P" << *BX << endl;
+
+cout << "CASH WITHDRAWN: P" << *AX << endl;
+
+break;
+
+case 30:
+
+//EXIT
+
+END();
+
+cout << "EXITING..." << endl;
+
+break;
+
+}
+
+}
+
+DISPLAY();
+
+}
