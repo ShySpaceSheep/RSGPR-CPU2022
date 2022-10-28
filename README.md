@@ -1,2 +1,2 @@
-# RSGPR-CPU2022 1
-University project simulating a simplified GPR computer architecture, still in progress.
+# RSGPR-CPU2022: ui-support-experiment
+Practical usage of a simplier GPR-CPU in ATM machines as demonstrated by 
