@@ -26,4 +26,5 @@ Due to the nature of the simplification of our project and a deliberate decision
 Once you feel like you're finished, end the input stream by entering `-endstream`.
 
 ## Extra Notes
-
+This development stage of our project is notoriously unstable when the user decides to go off the intended use of the program, this will be fixed soon in later editions.
+This project will still be maintained and updated regularly as see fit so if you are interested on how this will go, you can star this repository and check from time to time.
