@@ -46,10 +46,6 @@ void actionSelector() {
     char writeProgImport, writeProgMode;
     switch(actionSelected) {
         case 1:
-            cout << "Would you like to import an external text file for scanning? (Y/N): ";
-            cin >> writeProgImport;
-            cout << "Display inline register status every line? (Y/N): ";
-            cin >> writeProgMode;
             instructionInputStream();
             break;
         case 2:
