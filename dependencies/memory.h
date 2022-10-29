@@ -8,9 +8,9 @@ void viewDefaultMemory() {
     std::cout << "+------------------- TRSGPR MEMORY -------------------+" << std::endl;
     for (int i = 0; i <= 255; i++) {
         if (i % 16 == 0) {std::cout << std::endl;}
-        std::cout << "00|";
+        std::cout << "00 ";
     }
-    std::cout << "\n+--- Showing the first 255 bytes of memory ----+" << std::endl;
+    std::cout << "\n+----- Showing the first 255 bytes of memory -------+" << std::endl;
     system("pause");
 }
 
