@@ -128,12 +128,6 @@ void aboutText() {
     cout << "| https://github.com/ShySpaceSheep/RSGPR-CPU2022                                                |" << endl;
     cout << "|                                                                                               |" << endl;
     cout << "+-----------------------------------------------------------------------------------------------+" << endl;
-    cout << "| Contributors:                                                                                 |" << endl;
-    cout << "| Jose Elijah Fernandez, Jedidiah Ramos, Jason Carlo Obiso, Carl Vincent Piramide,              |" << endl;
-    cout << "| Christian Leo Martinez, Yureen Mae Flores, Kelly Tom Cu, Adrian De Leon, Bermar Villarazo Jr. |" << endl;
-    cout << "+-----------------------------------------------------------------------------------------------+" << endl;
-    cout << "| Advisor: Mr. Ralph Pepe Laviste                                                               |" << endl;
-    cout << "+-----------------------------------------------------------------------------------------------+" << endl;
     system("pause");
 }
 
