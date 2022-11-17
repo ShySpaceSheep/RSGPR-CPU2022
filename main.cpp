@@ -1,6 +1,4 @@
 #include <iostream>
-#include <windows.h>
-#include <shellapi.h>
 #include <chrono>
 #include "dependencies/interpreter.h"
 using std::cout;
@@ -62,7 +60,6 @@ void actionSelector() {
             cout << "Documentation opened in external window!" << endl;
             cout << "If it didn't open a browser tab, please copy and paste the GitHub link to your browser:" << endl;
             cout << "https://github.com/ShySpaceSheep/RSGPR-CPU2022" << endl;
-            ShellExecuteW(0, 0, L"https://github.com/ShySpaceSheep/RSGPR-CPU2022", 0, 0, SW_SHOW);
             system("pause");
             break;
         case 6:
