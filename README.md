@@ -1,4 +1,6 @@
 # TRSGPR-CPU 2022
+**Very important note: This specific version will no longer be maintained and will be a read-only archive repository, effective by January 31, 2023. A whole new rewrite is planned from the ground up to clean up a lot of things and learn from the mistakes that were made here.**
+
 The Relatively Simple General-Purpose Register CPU (or TRSGPR-CPU for short) is an amateur university project with the goal of emulating a very simplified version of the GPR-CPU architecture, demonstrating the capabilities of handling two operand instructions. For simplicity's sake, there are features of the GPR-CPU that are not included or supported to simply demonstrate the focal point of this simulation, in which to demonstrate two operand instructions, in contrast to the presented RSCPU (single operand) and the stack-based architectures.
 
 ## Changelog - What's New? (0.2.1-alpha build 11w3a)
